@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  dev-db-service:
+    image: postgres:latest
+    container_name: dev-postgres-container
+    ports:
+      - 55432:5432/tcp
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: nest
+      POSTGRES_PASSWORD: password
+    volumes:
+      - /var/lib/postgres
+      - ./dbscripts/postgres:/docker-entrypoint-initdb.d
+  test-db-service:
+    image: postgres:latest
+    container_name: test-postgres-container
+    ports:
+      - 55433:5432/tcp
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: nest
+      POSTGRES_PASSWORD: password
